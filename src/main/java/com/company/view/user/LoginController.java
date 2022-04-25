@@ -2,6 +2,7 @@ package com.company.view.user;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
@@ -31,10 +32,14 @@ public class LoginController implements Controller {
 		ModelAndView mav = new ModelAndView();
 		
 		if (user != null) {
-//			System.out.println("로그인 인증 성공");
+			// System.out.println("로그인 인증 성공");
+			HttpSession session = request.getSession();
+			session.setAttribute("IdKey", id);
+			
+			// 로그인 성공 시 실행 될 화면 정보를 ModelAndView 객체에 저장하여 리턴한다.
 			mav.setViewName("redirect:getBoardList.do");
 		} else {
-//			System.out.println("로그인 인증 실패");
+			// System.out.println("로그인 인증 실패");
 			mav.setViewName("redirect:login.jsp");
 		}
 		return mav;

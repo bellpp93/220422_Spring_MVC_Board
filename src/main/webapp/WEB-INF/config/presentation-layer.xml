@@ -9,6 +9,7 @@
 			<props>
 				<prop key="/login.do">login</prop>
 				<prop key="/getBoardList.do">getBoardList</prop>
+				<prop key="/getBoard.do">getBoard</prop>
 			</props>
 		</property>
 	</bean>
@@ -16,6 +17,7 @@
 	<!-- 각 Controller 등록 -->
 	<bean id="login" class="com.company.view.user.LoginController"></bean>
 	<bean id="getBoardList" class="com.company.view.board.GetBoardListController"></bean>
+	<bean id="getBoard" class="com.company.view.board.GetBoardController"></bean>
 	
 	<!-- ViewResolver 등록 -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
