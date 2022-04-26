@@ -47,7 +47,7 @@ public class BoardDAO {
 			JDBCUtil.close(rs, pstmt, conn);
 		}
 		return boardList;
-	}  // end getBoardList() ===============================================================
+	}  // End getBoardList() ===============================================================
 	
 	public BoardDO getBoard(BoardDO boardDO) {
 		System.out.println("===> JDBC로 getBoard() 메소드 처리");
@@ -84,5 +84,67 @@ public class BoardDAO {
 			JDBCUtil.close(rs, pstmt, conn);
 		}
 		return board;
-	}
+	}  // End getBoard() 메소드 ========================================================
+	
+	public void updateBoard(BoardDO boardDO) {
+		System.out.println("===> JDBC로 updateBoard() 메소드 처리");
+		
+		try {
+			conn = JDBCUtil.getConnection();
+			
+			String BOARD_UPDATE = "update board set title=?, content=? where seq=?";
+			
+			pstmt = conn.prepareStatement(BOARD_UPDATE);
+			pstmt.setString(1, boardDO.getTitle());
+			pstmt.setString(2, boardDO.getContent());
+			pstmt.setInt(3, boardDO.getSeq());
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("updateBoard() : " + e);
+		} finally {
+			JDBCUtil.close(pstmt, conn);
+		}
+	}  // End updateBoard() 메소드 =====================================================
+	
+	public void insertBoard(BoardDO boardDO) {
+		System.out.println("===> JDBC로 insertBoard() 메소드 처리");
+		
+		String BOARD_INSERT = "insert into board(seq, title, writer, content) " 
+								+ "values((select nvl(max(seq),0)+1 from board),?,?,?)";
+		try {
+			conn = JDBCUtil.getConnection();
+			pstmt = conn.prepareStatement(BOARD_INSERT);
+			pstmt.setString(1, boardDO.getTitle());
+			pstmt.setString(2, boardDO.getWriter());
+			pstmt.setString(3, boardDO.getContent());
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("insertBoard() : " + e);
+		} finally {
+			JDBCUtil.close(pstmt, conn);
+		}
+	}  // End insertBoard() 메소드 ====================================================
+	
+	public void deleteBoard(BoardDO boardDO) {
+		System.out.println("===> JDBC로 deleteBoard() 메소드 처리");
+		
+		String BOARD_DELETE = "delete from board where seq=?";
+		
+		try {
+			conn = JDBCUtil.getConnection();
+			pstmt = conn.prepareStatement(BOARD_DELETE);
+			pstmt.setInt(1, boardDO.getSeq());
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("deleteBoard() : " + e);
+		} finally {
+			JDBCUtil.close(pstmt, conn);
+		}
+	}  // End deleteBoard() 메소드 ====================================================
 }

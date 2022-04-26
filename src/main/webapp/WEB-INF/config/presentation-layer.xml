@@ -10,6 +10,10 @@
 				<prop key="/login.do">login</prop>
 				<prop key="/getBoardList.do">getBoardList</prop>
 				<prop key="/getBoard.do">getBoard</prop>
+				<prop key="/updateBoard.do">updateBoard</prop>
+				<prop key="/insertBoard.do">insertBoard</prop>
+				<prop key="/deleteBoard.do">deleteBoard</prop>
+				<prop key="/logout.do">logout</prop>
 			</props>
 		</property>
 	</bean>
@@ -18,6 +22,10 @@
 	<bean id="login" class="com.company.view.user.LoginController"></bean>
 	<bean id="getBoardList" class="com.company.view.board.GetBoardListController"></bean>
 	<bean id="getBoard" class="com.company.view.board.GetBoardController"></bean>
+	<bean id="updateBoard" class="com.company.view.board.UpdateBoardController"></bean>
+	<bean id="insertBoard" class="com.company.view.board.InsertBoardController"></bean>
+	<bean id="deleteBoard" class="com.company.view.board.DeleteBoardController"></bean>
+	<bean id="logout" class="com.company.view.user.LogoutController"></bean>
 	
 	<!-- ViewResolver 등록 -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">

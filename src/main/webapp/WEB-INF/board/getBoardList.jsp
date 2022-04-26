@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>getBoardList.jsp 페이지</title>
+<title>전체 게시글 목록 보기 페이지</title>
 <style>
 	#div_box {
 		position:absolute;

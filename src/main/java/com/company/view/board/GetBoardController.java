@@ -25,8 +25,8 @@ public class GetBoardController implements Controller {
 		BoardDO board = boardDAO.getBoard(boardDO);
 	
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("board", board);
-		mav.setViewName("getBoard");
+		mav.addObject("board", board);  // Model 결과 정보 저장
+		mav.setViewName("getBoard");  // View 정보(=포워딩) 저장
 		
 		return mav;
 	}
